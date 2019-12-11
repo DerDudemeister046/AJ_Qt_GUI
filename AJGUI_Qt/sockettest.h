@@ -12,7 +12,6 @@ public:
     explicit SocketTest(QObject *parent = nullptr);
     void Connect();
 signals:
-
 public slots:
 private:
     QTcpSocket* socket;
