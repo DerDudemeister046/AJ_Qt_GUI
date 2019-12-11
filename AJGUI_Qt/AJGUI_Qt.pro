@@ -20,7 +20,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         sockettest.cpp \
-        xmlcatcher.cpp
+        xmlcatcher.cpp \
+        xmlinterpreter.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -29,4 +30,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     sockettest.h \
-    xmlcatcher.h
+    xmlcatcher.h \
+    xmlinterpreter.h

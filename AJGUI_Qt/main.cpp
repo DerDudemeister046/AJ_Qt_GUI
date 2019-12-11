@@ -1,6 +1,7 @@
 #include <QCoreApplication>
 #include "sockettest.h"
 #include "xmlcatcher.h"
+#include "xmlinterpreter.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,8 +11,8 @@ int main(int argc, char *argv[])
     //sTest.Connect();
 
     XMLCatcher *xmlc = new XMLCatcher;
-    //xmlc->start();
-    xmlc->readDoc();
+
+    XMLInterpreter *xmli = new XMLInterpreter;
 
     return a.exec();
 }
