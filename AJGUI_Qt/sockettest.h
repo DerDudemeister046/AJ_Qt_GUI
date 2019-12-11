@@ -8,6 +8,11 @@
 #include <QNetworkAccessManager> // make requests to ajcore
 #include <QNetworkReply> // get an handle the replies from ajcore
 
+// XML with DOM
+#include <QtCore>
+#include <QtXml>
+#include <QDebug>
+
 class SocketTest : public QObject
 {
     Q_OBJECT

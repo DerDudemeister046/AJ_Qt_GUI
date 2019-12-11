@@ -10,7 +10,7 @@ void SocketTest::downloadFinished(QNetworkReply *reply)
 {
     //qDebug() << "Ergebnis: " << reply->readAll();
     QByteArray x = reply->readAll();
-    qDebug() << "Ergebnis " << x;
+    //qDebug() << "Ergebnis " << x;
 }
 
 
@@ -22,6 +22,27 @@ void SocketTest::Connect()
     const QUrl url = QUrl("http://192.168.0.2:9851/xml/modified.xml?password=25d55ad283aa400af464c76d713c07ad&session=1945950535&timestamp=1576089551879&filter=down;uploads;user;server;search;informations;ids");
     QNetworkRequest request(url);
     man->get(request);
+
+    // Accessing AJCore via DOM XML
+    QDomDocument document;
+    QFile file ("http://192.168.0.2:9851/xml/modified.xml?password=25d55ad283aa400af464c76d713c07ad&session=1945950535&timestamp=1576089551879&filter=down;uploads;user;server;search;informations;ids");
+    QByteArray text;
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug() << "Failed to open file";
+        text = file.readAll();
+    }
+    else
+    {
+        if(!document.setContent(text))
+        {
+            qDebug() << "Failed to load document";
+        }
+        file.close();
+    }
+    QDomElement root = document.firstChildElement();
+
+
 
     /*
     QString hashedpass = "25d55ad283aa400af464c76d713c07ad";
