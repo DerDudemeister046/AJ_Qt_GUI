@@ -1,4 +1,4 @@
-QT -= gui
+QT += gui
 QT += network
 QT += core
 

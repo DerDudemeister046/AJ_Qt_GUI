@@ -8,7 +8,7 @@ SocketTest::SocketTest(QObject *parent) : QObject(parent)
 void SocketTest::Connect()
 {
     socket = new QTcpSocket(this);
-    socket->connectToHost("91.66.129.61",80);
+    socket->connectToHost("192.168.0.2",9851);
 
     if (socket->waitForConnected(5000))
     {
