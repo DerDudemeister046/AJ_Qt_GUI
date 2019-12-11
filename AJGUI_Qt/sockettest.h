@@ -2,8 +2,11 @@
 #define SOCKETTEST_H
 
 #include <QObject>
-#include <QTcpSocket>
+#include <QTcpSocket>   // create TCP Socket
 #include <QDebug>
+
+#include <QNetworkAccessManager> // make requests to ajcore
+#include <QNetworkReply> // get an handle the replies from ajcore
 
 class SocketTest : public QObject
 {
