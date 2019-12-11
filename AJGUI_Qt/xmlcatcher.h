@@ -14,12 +14,14 @@ class XMLCatcher : public QObject
 public:
     explicit XMLCatcher(QObject *parent = nullptr);
     void start();
-
+    void write();
+    QByteArray getXMLReply();
+    void setXMLReply(QByteArray qa);
 signals:
-
 public slots:
 private:
     QByteArray xmlreply;
+    QDomDocument document;
 private slots:
     void replyFinished(QNetworkReply*);
 };

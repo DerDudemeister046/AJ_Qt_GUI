@@ -10,7 +10,8 @@ int main(int argc, char *argv[])
     //sTest.Connect();
 
     XMLCatcher *xmlc = new XMLCatcher;
-    xmlc->start();
+    //xmlc->start();
+    xmlc->readDoc();
 
     return a.exec();
 }
