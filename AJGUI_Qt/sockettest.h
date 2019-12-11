@@ -18,6 +18,8 @@ signals:
 public slots:
 private:
     QTcpSocket* socket;
+private slots:
+    void downloadFinished(QNetworkReply*);
 };
 
 #endif // SOCKETTEST_H
