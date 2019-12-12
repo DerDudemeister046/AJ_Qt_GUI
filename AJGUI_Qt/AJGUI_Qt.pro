@@ -37,3 +37,6 @@ HEADERS += \
     xmlcatcher.h \
     xmlinterpreter.h \
     xmlpathgenerator.h
+
+RESOURCES += \
+    resources.qrc

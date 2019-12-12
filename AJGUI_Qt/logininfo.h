@@ -13,6 +13,7 @@
 #include <QPalette>
 #include <QImageReader>
 #include <QPixmap>
+#include <QDebug>
 
 class LoginInfo : public QWidget
 {
@@ -20,15 +21,17 @@ class LoginInfo : public QWidget
 public:
     explicit LoginInfo(QWidget *parent = nullptr);
 private:
-    QLineEdit *echoLineEdit;
-    QLineEdit *validatorLineEdit;
-    QLineEdit *alignmentLineEdit;
-    QLineEdit *inputMaskLineEdit;
-    QLineEdit *accessLineEdit;
+    QLineEdit *server_le;
+    QLineEdit *port_le;
+    QLineEdit *password_le;
 
+    QString server;
+    QString port;
+    QString passwordhash;
 signals:
 
 public slots:
+    void loginToCore();
 };
 
 #endif // LOGININFO_H
