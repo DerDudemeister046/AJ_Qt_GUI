@@ -15,6 +15,9 @@
 #include <QPixmap>
 #include <QDebug>
 
+
+#include "md5generator.h"
+
 class LoginInfo : public QWidget
 {
     Q_OBJECT

@@ -5,7 +5,6 @@ LoginInfo::LoginInfo(QWidget *parent) : QWidget(parent)
     // Prepare Items for Login Widget
     // Prepare Label
     QLabel *banner_lbl = new QLabel;
-    //banner_lbl->setText("CiderPress");
     QPixmap pixmap(":/img/img/banner_test_small.png");
     banner_lbl->setPixmap(pixmap);
     QLabel *server_lbl = new QLabel;
@@ -17,7 +16,6 @@ LoginInfo::LoginInfo(QWidget *parent) : QWidget(parent)
 
     // Prepare LineEdits
     server_le = new QLineEdit;
-    //server_le->setText("http://localhost");
     server_le->setPlaceholderText("http://localhost");
     port_le = new QLineEdit;
     port_le->setPlaceholderText("9851");
@@ -52,10 +50,29 @@ LoginInfo::LoginInfo(QWidget *parent) : QWidget(parent)
 
 void LoginInfo::loginToCore()
 {
-    server = server_le->text();
-    qDebug() << "Server: " << server;
-    port = port_le->text();
-    qDebug() << "Port: " << port;
-    passwordhash = password_le->text();
-    qDebug() << "Password: " << passwordhash;
+    // ADD Dialogboxes for Error Handling in future!!!
+
+    if(server_le->text() != "" && port_le->text() != "")
+    {
+        server = server_le->text();
+        qDebug() << "Server: " << server;
+        port = port_le->text();
+        qDebug() << "Port: " << port;
+        if(password_le->text() == "")
+        {
+            qDebug() << "WARNING: Connection is unsecure due to empty password";
+            passwordhash = "";
+        }
+        else
+        {
+            MD5Generator *gen = new MD5Generator;
+            passwordhash = gen->generateHash(password_le->text());
+            qDebug() << "Password: " << passwordhash;
+        }
+    }
+    else
+    {
+        qDebug() << "Please specify Server and Port!";
+    }
+
 }
