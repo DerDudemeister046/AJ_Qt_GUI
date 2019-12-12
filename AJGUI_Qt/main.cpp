@@ -1,18 +1,16 @@
 #include <QCoreApplication>
+#include <QApplication>
 #include <QDebug>
 
-#include "sockettest.h"
 #include "xmlcatcher.h"
 #include "xmlinterpreter.h"
 #include "unixtimer.h"
+#include "logininfo.h"
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
-
-    //SocketTest sTest;
-    //sTest.Connect();
-
+    QApplication app(argc,argv);
+    //QCoreApplication a(argc, argv);
     //XMLCatcher *xmlc = new XMLCatcher;
     //XMLInterpreter *xmli = new XMLInterpreter;
 
@@ -23,5 +21,12 @@ int main(int argc, char *argv[])
         qDebug() << "TIMESTAMP ["<< i << "]: " << ut->getUnixTime();
     }
 
-    return a.exec();
+    //LoginInfo *login = new LoginInfo();
+    //login->show();
+
+    LoginInfo login;
+    login.show();
+
+    //return a.exec();
+    return app.exec();
 }
