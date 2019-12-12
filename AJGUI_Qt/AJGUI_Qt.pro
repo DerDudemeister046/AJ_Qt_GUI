@@ -20,6 +20,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         sockettest.cpp \
+        unixtimer.cpp \
         xmlcatcher.cpp \
         xmlinterpreter.cpp
 
@@ -30,5 +31,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     sockettest.h \
+    unixtimer.h \
     xmlcatcher.h \
     xmlinterpreter.h
