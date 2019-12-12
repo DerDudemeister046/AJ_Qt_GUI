@@ -10,6 +10,9 @@
 #include <QHBoxLayout>
 #include <QGridLayout>
 #include <QPushButton>
+#include <QPalette>
+#include <QImageReader>
+#include <QPixmap>
 
 class LoginInfo : public QWidget
 {

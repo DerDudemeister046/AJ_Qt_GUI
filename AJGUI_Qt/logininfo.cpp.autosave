@@ -31,6 +31,7 @@ LoginInfo::LoginInfo(QWidget *parent) : QWidget(parent)
     // Prepare Items for Login Widget
     // Prepare Label
     QLabel *banner_lbl = new QLabel;
+    
     QLabel *server_lbl = new QLabel;
     QLabel *password_lbl = new QLabel;
     QLabel *port_lbl = new QLabel;

@@ -13,14 +13,14 @@ int main(int argc, char *argv[])
     //QCoreApplication a(argc, argv);
     //XMLCatcher *xmlc = new XMLCatcher;
     //XMLInterpreter *xmli = new XMLInterpreter;
-
+    /*
     UnixTimer *ut = new UnixTimer;
 
     for (int i = 0; i<10000; i++)
     {
         qDebug() << "TIMESTAMP ["<< i << "]: " << ut->getUnixTime();
     }
-
+    */
     //LoginInfo *login = new LoginInfo();
     //login->show();
 
