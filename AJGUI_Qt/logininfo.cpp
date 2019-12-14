@@ -50,8 +50,9 @@ LoginInfo::LoginInfo(QWidget *parent) : QWidget(parent)
 
 void LoginInfo::loginToCore()
 {
-    // ADD Dialogboxes for Error Handling in future!!!
+    MainWindow *mw = new MainWindow;
 
+    // ADD Dialogboxes for Error Handling in future!!!
     if(server_le->text() != "" && port_le->text() != "")
     {
         server = server_le->text();
@@ -62,12 +63,16 @@ void LoginInfo::loginToCore()
         {
             qDebug() << "WARNING: Connection is unsecure due to empty password";
             passwordhash = "";
+            this->hide();
+            mw->show();
         }
         else
         {
             MD5Generator *gen = new MD5Generator;
             passwordhash = gen->generateHash(password_le->text());
             qDebug() << "Password: " << passwordhash;
+            this->hide();
+            mw->show();
         }
     }
     else

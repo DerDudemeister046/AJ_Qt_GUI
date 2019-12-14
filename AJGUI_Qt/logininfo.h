@@ -17,6 +17,7 @@
 
 
 #include "md5generator.h"
+#include "mainwindow.h"
 
 class LoginInfo : public QWidget
 {

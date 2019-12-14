@@ -21,6 +21,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         logininfo.cpp \
         main.cpp \
+        mainwindow.cpp \
         md5generator.cpp \
         unixtimer.cpp \
         xmlcatcher.cpp \
@@ -34,6 +35,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     logininfo.h \
+    mainwindow.h \
     md5generator.h \
     unixtimer.h \
     xmlcatcher.h \
@@ -42,3 +44,6 @@ HEADERS += \
 
 RESOURCES += \
     resources.qrc
+
+FORMS += \
+    mainwindow.ui
