@@ -12,3 +12,11 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::start()
+{
+    this->hide();
+    LoginInfo *login = new LoginInfo;
+    login->show();
+    this->show();
+}

@@ -24,6 +24,10 @@ class LoginInfo : public QWidget
     Q_OBJECT
 public:
     explicit LoginInfo(QWidget *parent = nullptr);
+    bool dataValid();
+    QString getServer();
+    QString getPort();
+    QString getPasswordHash();
 private:
     QLineEdit *server_le;
     QLineEdit *port_le;
@@ -32,6 +36,7 @@ private:
     QString server;
     QString port;
     QString passwordhash;
+    bool data;
 signals:
 
 public slots:
