@@ -2,16 +2,11 @@
 
 XMLInterpreter::XMLInterpreter(QObject *parent) : QObject(parent)
 {
-
-    readXML();
-
 }
 
-void XMLInterpreter::readXML()
+void XMLInterpreter::readXML(QString xmlpath)
 {
-
-
-    QFile file("./settings");
+    QFile file(xmlpath);
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         qDebug() << "Failed to open XML-File";
@@ -25,17 +20,17 @@ void XMLInterpreter::readXML()
         }
         qDebug() << "Document opened successfully!";
         file.close();
-    }
-    root = doc.firstChildElement();
+    }    
     // get root element
+    root = doc.firstChildElement();
     // List elements of XML-File
     //listElements(root, "server", "host");
     //listElements(root, "server", "name");
     //listElements(root, "server", "port");
     //listElements(root, "server", "lastseen");
-    listElements("ajcore", "host");
-    listElements("ajcore", "port");
-    listElements("ajcore", "password");
+    //listElements("ajcore", "host");
+    //listElements("ajcore", "port");
+    //listElements("ajcore", "password");
     qDebug() << "Finished!";
 }
 

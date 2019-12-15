@@ -86,9 +86,9 @@ bool Settings_Manager::writeSettingsFile()
         success = true;
     }
 
-    XMLInterpreter *xi = new XMLInterpreter;
-
-    qDebug() << "PASSWD: " << xi->readElement("ajcore", "password");
+    //XMLInterpreter *xi = new XMLInterpreter;
+    //xi->readXML("settings.xml");
+    //qDebug() << "PASSWD: " << xi->readElement("ajcore", "password");
 
     return success;
 }

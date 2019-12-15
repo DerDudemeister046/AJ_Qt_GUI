@@ -6,6 +6,8 @@
 #include <QNetworkAccessManager> // Make requests to core
 #include <QNetworkReply> // handle core replies
 #include <QDebug>
+#include "xmlinterpreter.h"
+#include "unixtimer.h"
 
 class CoreCommunicator : public QObject
 {
@@ -16,7 +18,9 @@ public:
     QByteArray getXMLReply();
     void setXMLReply(QByteArray qa);
     void write();
+    QString urlCreator(int table);
 private:
+    XMLInterpreter *xmlInterpreter;
     QByteArray xmlreply;
     QDomDocument document;
     QDomDocument settings;

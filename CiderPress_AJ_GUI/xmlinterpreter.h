@@ -10,7 +10,8 @@ class XMLInterpreter : public QObject
     Q_OBJECT
 public:
     explicit XMLInterpreter(QObject *parent = nullptr);
-    void readXML();
+    void readXML(QString xmlpath);
+    void readConfig();
     void listElements(QString tagname, QString attribute); // Lists all elements in XML File
     QString readElement(QString tagname, QString attribute);
 private:

@@ -2,6 +2,8 @@
 #define DOWNLOADS_WIDGET_H
 
 #include <QWidget>
+#include <QDebug>
+#include "corecommunicator.h"
 
 namespace Ui {
 class Downloads_Widget;
@@ -17,6 +19,7 @@ public:
 
 private:
     Ui::Downloads_Widget *ui;
+    CoreCommunicator *corecom;
 };
 
 #endif // DOWNLOADS_WIDGET_H
