@@ -19,6 +19,7 @@ public:
 private:
     QByteArray xmlreply;
     QDomDocument document;
+    QDomDocument settings;
 signals:
 
 public slots:
