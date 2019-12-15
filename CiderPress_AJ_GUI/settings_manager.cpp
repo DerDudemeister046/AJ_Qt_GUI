@@ -23,12 +23,16 @@ Settings_Manager::Settings_Manager(QObject *parent) : QObject(parent)
             qDebug() << "Configfile successfully created";
         }
     }
+    else
+    {
+        qDebug() << "Configfile found";
+    }
 }
 
 bool Settings_Manager::checkSettingsFile()
 {
     bool fileavailable = false;
-    QString fileName("./settings");
+    QString fileName(filename);
 
     if(QFileInfo::exists(fileName))
     {
@@ -46,7 +50,7 @@ bool Settings_Manager::createSettingsFile()
 {
     bool success = false;
     // Write file to disk
-    QFile file("./settings");
+    QFile file(filename);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
         qDebug() << "File cant be opened!";
@@ -68,7 +72,7 @@ bool Settings_Manager::writeSettingsFile()
     bool success = false;
 
     // Write file to disk
-    QFile file("./settings");
+    QFile file(filename);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
         qDebug() << "File cant be opened!";

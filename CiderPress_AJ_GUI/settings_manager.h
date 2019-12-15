@@ -20,6 +20,7 @@ public:
 private:
     QDomDocument document;
     QDomElement root;
+    QString filename = "settings.xml";
 signals:
 
 public slots:

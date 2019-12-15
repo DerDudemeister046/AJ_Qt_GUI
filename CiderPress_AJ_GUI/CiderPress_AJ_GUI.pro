@@ -16,19 +16,23 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    corecommunicator.cpp \
     downloads_widget.cpp \
     main.cpp \
     ciderpress.cpp \
     md5generator.cpp \
     settings_manager.cpp \
-    settings_widget.cpp
+    settings_widget.cpp \
+    unixtimer.cpp
 
 HEADERS += \
     ciderpress.h \
+    corecommunicator.h \
     downloads_widget.h \
     md5generator.h \
     settings_manager.h \
-    settings_widget.h
+    settings_widget.h \
+    unixtimer.h
 
 FORMS += \
     ciderpress.ui \
