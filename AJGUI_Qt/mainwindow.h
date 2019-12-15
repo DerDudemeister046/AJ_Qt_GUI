@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include <QDebug>
-#include "logininfo.h"
 
 namespace Ui {
 class MainWindow;

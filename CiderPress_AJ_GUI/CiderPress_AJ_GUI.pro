@@ -1,12 +1,8 @@
-QT += gui
-QT += network
-QT += core
-QT += xml
-QT += widgets
-QT -= console
+QT       += core gui
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
-CONFIG -= app_bundle
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -20,28 +16,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        logindialog.cpp \
-        logininfo.cpp \
-        main.cpp \
-        mainwindow.cpp \
-        md5generator.cpp \
-        unixtimer.cpp \
+    main.cpp \
+    ciderpress.cpp \
+    settings_widget.cpp
+
+HEADERS += \
+    ciderpress.h \
+    settings_widget.h
+
+FORMS += \
+    ciderpress.ui \
+    settings_widget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-HEADERS += \
-    logindialog.h \
-    logininfo.h \
-    mainwindow.h \
-    md5generator.h \
-    unixtimer.h \
-
-RESOURCES += \
-    resources.qrc
-
-FORMS += \
-    logindialog.ui \
-    mainwindow.ui
