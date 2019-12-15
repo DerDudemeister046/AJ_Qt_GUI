@@ -20,6 +20,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        logindialog.cpp \
         logininfo.cpp \
         main.cpp \
         mainwindow.cpp \
@@ -35,6 +36,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    logindialog.h \
     logininfo.h \
     mainwindow.h \
     md5generator.h \
@@ -47,4 +49,5 @@ RESOURCES += \
     resources.qrc
 
 FORMS += \
+    logindialog.ui \
     mainwindow.ui
