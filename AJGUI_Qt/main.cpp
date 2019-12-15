@@ -1,13 +1,17 @@
-#include <QCoreApplication>
-#include "sockettest.h"
+#include <QApplication>
+
+#include "mainwindow.h"
+#include "logininfo.h"
 
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
+    QApplication app(argc,argv);
+    LoginInfo* login = new LoginInfo;
+    login->show();
+    qDebug() << "A";
 
-    SocketTest sTest;
-    sTest.Connect();
 
-    return a.exec();
+
+    return app.exec();
 }

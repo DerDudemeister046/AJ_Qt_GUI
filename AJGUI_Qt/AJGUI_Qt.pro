@@ -1,8 +1,11 @@
 QT += gui
 QT += network
 QT += core
+QT += xml
+QT += widgets
+QT -= console
 
-CONFIG += c++11 console
+CONFIG += c++11
 CONFIG -= app_bundle
 
 # The following define makes your compiler emit warnings if you use
@@ -17,8 +20,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        logininfo.cpp \
         main.cpp \
-        sockettest.cpp
+        mainwindow.cpp \
+        md5generator.cpp \
+        unixtimer.cpp \
+        xmlcatcher.cpp \
+        xmlinterpreter.cpp \
+        xmlpathgenerator.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -26,4 +35,16 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    sockettest.h
+    logininfo.h \
+    mainwindow.h \
+    md5generator.h \
+    unixtimer.h \
+    xmlcatcher.h \
+    xmlinterpreter.h \
+    xmlpathgenerator.h
+
+RESOURCES += \
+    resources.qrc
+
+FORMS += \
+    mainwindow.ui
