@@ -13,10 +13,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::start()
+void MainWindow::start(QString server, QString port, QString pwdHash, bool valid)
 {
     this->hide();
-    LoginInfo *login = new LoginInfo;
-    login->show();
-    this->show();
+    if (valid)
+    {
+        this->show();
+    }
 }

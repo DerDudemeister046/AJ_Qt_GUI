@@ -3,8 +3,9 @@ QT += network
 QT += core
 QT += xml
 QT += widgets
+QT -= console
 
-CONFIG += c++11 console
+CONFIG += c++11
 CONFIG -= app_bundle
 
 # The following define makes your compiler emit warnings if you use

@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QDebug>
 #include "logininfo.h"
 
 namespace Ui {
@@ -15,7 +16,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void start();
+    void start(QString server, QString port, QString pwdHash, bool valid);
 private:
     Ui::MainWindow *ui;
 };

@@ -62,6 +62,7 @@ void LoginInfo::loginToCore()
             qDebug() << "WARNING: Connection is unsecure due to empty password";
             passwordhash = "";
             data = true; // valid data was given
+
             this->hide();
         }
         else

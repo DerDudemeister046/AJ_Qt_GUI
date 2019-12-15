@@ -1,13 +1,18 @@
 #include <QApplication>
 
 #include "mainwindow.h"
+#include "logininfo.h"
 
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc,argv);
-    MainWindow *mainwindow = new MainWindow(nullptr);
-    //mainwindow->show();
-    mainwindow->start();
+    LoginInfo* login = new LoginInfo;
+    login->show();
+
+    qDebug() << "A";
+
+
+
     return app.exec();
 }
