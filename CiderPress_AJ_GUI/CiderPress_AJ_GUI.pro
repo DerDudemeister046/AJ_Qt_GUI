@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui network xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -19,12 +19,14 @@ SOURCES += \
     downloads_widget.cpp \
     main.cpp \
     ciderpress.cpp \
+    md5generator.cpp \
     settings_manager.cpp \
     settings_widget.cpp
 
 HEADERS += \
     ciderpress.h \
     downloads_widget.h \
+    md5generator.h \
     settings_manager.h \
     settings_widget.h
 
