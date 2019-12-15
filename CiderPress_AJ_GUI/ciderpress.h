@@ -15,6 +15,11 @@ public:
     CiderPress(QWidget *parent = nullptr);
     ~CiderPress();
 
+private slots:
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
+
 private:
     Ui::CiderPress *ui;
 };
