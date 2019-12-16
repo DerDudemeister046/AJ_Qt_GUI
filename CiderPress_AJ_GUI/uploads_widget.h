@@ -2,6 +2,11 @@
 #define UPLOADS_WIDGET_H
 
 #include <QWidget>
+#include <QTreeWidgetItem>
+#include <QAbstractItemModel> // For creating Table View item
+#include <QDebug>
+#include "corecommunicator.h"
+#include "xmlinterpreter.h"
 
 namespace Ui {
 class uploads_widget;
