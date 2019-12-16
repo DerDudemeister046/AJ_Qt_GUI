@@ -16,6 +16,7 @@ class uploads_widget : public QWidget
 {
     Q_OBJECT
 
+
 public:
     explicit uploads_widget(QWidget *parent = nullptr);
     ~uploads_widget();
