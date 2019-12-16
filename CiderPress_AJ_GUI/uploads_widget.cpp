@@ -1,29 +1,28 @@
-#include "downloads_widget.h"
-#include "ui_downloads_widget.h"
+#include "uploads_widget.h"
+#include "ui_uploads_widget.h"
 
-Downloads_Widget::Downloads_Widget(QWidget *parent) :
+Uploads_Widget::Uploads_Widget(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::Downloads_Widget)
+    ui(new Ui::Uploads_Widget)
 {
     ui->setupUi(this);
     corecom = new CoreCommunicator(this);
     // Setup TableView in Widget
-    ui->downloads_treew->setColumnCount(3);
+    ui->uploads_treew->setColumnCount(3);
 }
 
-Downloads_Widget::~Downloads_Widget()
+Uploads_Widget::~Uploads_Widget()
 {
     delete ui;
 }
 
-
-void Downloads_Widget::on_getList_btn_clicked()
+void Uploads_Widget::on_getList_btn_clicked()
 {
     corecom->setFilename("modified.xml");
 
     // Setup final url to include filters if needed
     QString urlbase = corecom->urlCreator("modified.xml");
-    QString urlfilter = "&filter=ids;down";
+    QString urlfilter = "&filter=ids;upload";
     QString geturl = urlbase + urlfilter;
 
     qDebug() << geturl;
@@ -47,18 +46,18 @@ void Downloads_Widget::on_getList_btn_clicked()
     }
 }
 
-void Downloads_Widget::addRoot(QString name, QString description, QString status)
+void Uploads_Widget::addRoot(QString name, QString description, QString status)
 {
-    QTreeWidgetItem *itm = new QTreeWidgetItem(ui->downloads_treew);
+    QTreeWidgetItem *itm = new QTreeWidgetItem(ui->uploads_treew);
     itm->setText(0,name);
     itm->setText(1,description);
     itm->setText(2, status);
-    ui->downloads_treew->addTopLevelItem(itm);
+    ui->uploads_treew->addTopLevelItem(itm);
 
     //addChild(itm,"abc","test1");
 }
 
-void Downloads_Widget::addChild(QTreeWidgetItem *parent, QString name, QString description, QString status)
+void Uploads_Widget::addChild(QTreeWidgetItem *parent, QString name, QString description, QString status)
 {
     QTreeWidgetItem *itm = new QTreeWidgetItem();
     itm->setText(0,name);

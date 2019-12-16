@@ -15,15 +15,19 @@ class CoreCommunicator : public QObject
 public:
     explicit CoreCommunicator(QObject *parent = nullptr);
     void start();
+    void get(QString url);
     QByteArray getXMLReply();
     void setXMLReply(QByteArray qa);
     void write();
-    QString urlCreator(int table);
+    QString urlCreator(QString table);
+    void setFilename(QString filename);
 private:
     XMLInterpreter *xmlInterpreter;
     QByteArray xmlreply;
     QDomDocument document;
     QDomDocument settings;
+    QFile file;
+    QString filename = "default.xml";
 signals:
 
 public slots:

@@ -93,10 +93,12 @@ bool Settings_Manager::writeSettingsFile()
     return success;
 }
 
-void Settings_Manager::readSettingsFile()
+QString Settings_Manager::readSettingsFile(QString section, QString value)
 {
-    XMLInterpreter *xmlinterpreter = new XMLInterpreter;
-
+    XMLInterpreter *xi = new XMLInterpreter;
+    xi->readXML(filename);
+    qDebug() << "VALUE: " << xi->readElement(section, value);
+    return xi->readElement(section, value);
 }
 
 

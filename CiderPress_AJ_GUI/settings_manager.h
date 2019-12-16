@@ -17,7 +17,7 @@ public:
     bool checkSettingsFile();   // checks if a settingsfile has been created.
     bool createSettingsFile();  // creates an empty settingsfile
     bool writeSettingsFile();   // writes settings to disk
-    void readSettingsFile();
+    QString readSettingsFile(QString section, QString value);    // Read setting from file
     void ajcoreSettings(QString host, QString port, QString password);
     void directorySettings(QString complete, QString incomplete);
 private:

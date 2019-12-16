@@ -2,6 +2,7 @@
 #define CIDERPRESS_H
 
 #include <QMainWindow>
+#include <QMdiSubWindow>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class CiderPress; }

@@ -8,6 +8,15 @@ Settings_Widget::Settings_Widget(QWidget *parent) :
     ui->setupUi(this);
     smgr = new Settings_Manager(this);
     md5gen = new MD5Generator(this);
+    if (smgr->checkSettingsFile())
+    {
+        qDebug() << "Populate fields";
+        ui->host_le->setText(smgr->readSettingsFile("ajcore", "host"));
+        ui->port_le->setText(smgr->readSettingsFile("ajcore", "port"));
+        //ui->password_le->setText(smgr->readSettingsFile("ajcore", "password"));
+        ui->completeDir_le->setText(smgr->readSettingsFile("directories", "complete"));
+        ui->incompleteDir_le->setText(smgr->readSettingsFile("directories", "incomplete"));
+    }
 }
 
 Settings_Widget::~Settings_Widget()

@@ -21,9 +21,11 @@ SOURCES += \
     main.cpp \
     ciderpress.cpp \
     md5generator.cpp \
+    servers_widget.cpp \
     settings_manager.cpp \
     settings_widget.cpp \
     unixtimer.cpp \
+    uploads_widget.cpp \
     xmlinterpreter.cpp
 
 HEADERS += \
@@ -31,15 +33,19 @@ HEADERS += \
     corecommunicator.h \
     downloads_widget.h \
     md5generator.h \
+    servers_widget.h \
     settings_manager.h \
     settings_widget.h \
     unixtimer.h \
+    uploads_widget.h \
     xmlinterpreter.h
 
 FORMS += \
     ciderpress.ui \
     downloads_widget.ui \
-    settings_widget.ui
+    servers_widget.ui \
+    settings_widget.ui \
+    uploads_widget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
