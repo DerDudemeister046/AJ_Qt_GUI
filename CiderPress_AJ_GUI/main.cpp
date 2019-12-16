@@ -4,6 +4,11 @@
 #include "corecommunicator.h"
 #include "xmlinterpreter.h"
 
+/* Test Includes */
+#include <QFile>
+#include <QtXml>
+
+
 #include <QDebug>
 
 int main(int argc, char *argv[])

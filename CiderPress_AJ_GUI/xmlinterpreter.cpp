@@ -23,21 +23,12 @@ void XMLInterpreter::readXML(QString xmlpath)
     }    
     // get root element
     root = doc.firstChildElement();
-    // List elements of XML-File
-    //listElements(root, "server", "host");
-    //listElements(root, "server", "name");
-    //listElements(root, "server", "port");
-    //listElements(root, "server", "lastseen");
-    //listElements("ajcore", "host");
-    //listElements("ajcore", "port");
-    //listElements("ajcore", "password");
-    qDebug() << "Finished!";
+    qDebug() << "Reading XML-File finished!";
 }
 
 void XMLInterpreter::listElements(QString tagname, QString attribute)
 {
     QDomNodeList items = root.elementsByTagName(tagname);
-    //qDebug() << "Total Items: " << items.count();
 
     for (int i = 0; i < items.count(); i++)
     {
@@ -51,10 +42,28 @@ void XMLInterpreter::listElements(QString tagname, QString attribute)
     }
 }
 
+QStringList XMLInterpreter::getElementList(QString tagname, QString attribute)
+{
+    QStringList list;
+    QDomNodeList items = root.elementsByTagName(tagname);
+
+    for (int i = 0; i < items.count(); i++)
+    {
+        QDomNode itemnode = items.at(i);
+        // convert to element
+        if(itemnode.isElement())
+        {
+            QDomElement itemx = itemnode.toElement();
+            qDebug() << itemx.attribute(attribute);
+            list << itemx.attribute(attribute);
+        }
+    }
+    return list;
+}
+
 QString XMLInterpreter::readElement(QString tagname, QString attribute)
 {
     QDomNodeList items = root.elementsByTagName(tagname);
-    //qDebug() << "Total Items: " << items.count();
     QString element = "";
     for (int i = 0; i < items.count(); i++)
     {
@@ -63,9 +72,14 @@ QString XMLInterpreter::readElement(QString tagname, QString attribute)
         if(itemnode.isElement())
         {
             QDomElement itemx = itemnode.toElement();
-            qDebug() << itemx.attribute(attribute);
+            //qDebug() << itemx.attribute(attribute);
             element = itemx.attribute(attribute);
         }
     }
     return element;
+}
+
+QDomDocument XMLInterpreter::getDocument()
+{
+    return doc;
 }

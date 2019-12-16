@@ -15,6 +15,15 @@ void CoreCommunicator::start()
     man->get(request);
 }
 
+void CoreCommunicator::get(QString url)
+{
+    QNetworkAccessManager *man = new QNetworkAccessManager(this);
+    connect(man, &QNetworkAccessManager::finished, this, &CoreCommunicator::replyFinished);
+    // url should constantly be updated!
+    const QUrl u = QUrl(url);
+    QNetworkRequest request(u);
+    man->get(request);
+}
 
 QByteArray CoreCommunicator::getXMLReply()
 {
@@ -28,7 +37,7 @@ void CoreCommunicator::setXMLReply(QByteArray qa)
 
 void CoreCommunicator::write()
 {
-    QFile file("./test.xml"); // change to different dir/name
+    file.setFileName(filename); // change to different dir/name
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
         qDebug() << "Failed to open file";
@@ -42,59 +51,23 @@ void CoreCommunicator::write()
     }
 }
 
-QString CoreCommunicator::urlCreator(int table)
+QString CoreCommunicator::urlCreator(QString table)
 {
     xmlInterpreter = new XMLInterpreter(this);
     xmlInterpreter->readXML("settings.xml");
 
-    QString ptc = "http://";
-    //QString h = "HOST";
     QString h = xmlInterpreter->readElement("ajcore", "host");
-    QString hps = ":";
     QString p = xmlInterpreter->readElement("ajcore", "port");
-    QString tbl;
-    if (table == 1)
-    {
-        tbl = "xml/directory.xml";
-    }
-    if (table == 2)
-    {
-        tbl = "xml/downloadpartlist.xml";
-    }
-    if (table == 3)
-    {
-        tbl = "xml/getobject.xml";
-    }
-    if (table == 4)
-    {
-        tbl = "xml/getsession.xml";
-    }
-    if (table == 5)
-    {
-        tbl = "xml/information.xml";
-    }
-    if (table == 6)
-    {
-        tbl = "xml/modified.xml";
-    }
-    if (table == 7)
-    {
-        tbl = "xml/settings.xml";
-    }
-    if (table == 8)
-    {
-        tbl = "xml/share.xml";
-    }
-    if (table == 9)
-    {
-        tbl = "xml/userpartlist.xml";
-    }
-    QString pwd = "?password=";
     QString pwdHash = xmlInterpreter->readElement("ajcore", "password");
     UnixTimer *unixtime = new UnixTimer;
     QString time = QVariant(unixtime->getUnixTime()).toString();
-    QString url = "http://" + h + ":" + p + "/" + tbl + "?password=" + pwdHash + "&timestamp=" + time;
+    QString url = "http://" + h + ":" + p + "/xml/" + table + "?password=" + pwdHash + "&timestamp=" + time;
     return url;
+}
+
+void CoreCommunicator::setFilename(QString filename)
+{
+    this->filename = filename;
 }
 
 
