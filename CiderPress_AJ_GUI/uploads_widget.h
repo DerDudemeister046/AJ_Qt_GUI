@@ -9,20 +9,25 @@
 #include "xmlinterpreter.h"
 
 namespace Ui {
-class uploads_widget;
+class Uploads_Widget;
 }
 
-class uploads_widget : public QWidget
+class Uploads_Widget : public QWidget
 {
     Q_OBJECT
 
-
 public:
-    explicit uploads_widget(QWidget *parent = nullptr);
-    ~uploads_widget();
+    explicit Uploads_Widget(QWidget *parent = nullptr);
+    ~Uploads_Widget();
+
+    void addRoot(QString name, QString description, QString status);
+    void addChild(QTreeWidgetItem *parent, QString name, QString description, QString status);
+private slots:
+    void on_getList_btn_clicked();
 
 private:
-    Ui::uploads_widget *ui;
+    Ui::Uploads_Widget *ui;
+    CoreCommunicator *corecom;
 };
 
 #endif // UPLOADS_WIDGET_H

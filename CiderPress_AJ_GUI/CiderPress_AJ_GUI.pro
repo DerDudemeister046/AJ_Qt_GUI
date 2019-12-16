@@ -21,6 +21,7 @@ SOURCES += \
     main.cpp \
     ciderpress.cpp \
     md5generator.cpp \
+    servers_widget.cpp \
     settings_manager.cpp \
     settings_widget.cpp \
     unixtimer.cpp \
@@ -32,6 +33,7 @@ HEADERS += \
     corecommunicator.h \
     downloads_widget.h \
     md5generator.h \
+    servers_widget.h \
     settings_manager.h \
     settings_widget.h \
     unixtimer.h \
@@ -41,6 +43,7 @@ HEADERS += \
 FORMS += \
     ciderpress.ui \
     downloads_widget.ui \
+    servers_widget.ui \
     settings_widget.ui \
     uploads_widget.ui
 
