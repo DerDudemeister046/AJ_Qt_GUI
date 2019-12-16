@@ -21,8 +21,8 @@ public:
     explicit Downloads_Widget(QWidget *parent = nullptr);
     ~Downloads_Widget();
 
-    void addRoot(QString name, QString Description);
-    void addChild(QTreeWidgetItem *parent, QString name, QString Description);
+    void addRoot(QString name, QString description, QString status);
+    void addChild(QTreeWidgetItem *parent, QString name, QString description, QString status);
 private slots:
     void on_getList_btn_clicked();
 

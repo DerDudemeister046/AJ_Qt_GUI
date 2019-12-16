@@ -24,6 +24,7 @@ SOURCES += \
     settings_manager.cpp \
     settings_widget.cpp \
     unixtimer.cpp \
+    uploads_widget.cpp \
     xmlinterpreter.cpp
 
 HEADERS += \
@@ -34,12 +35,14 @@ HEADERS += \
     settings_manager.h \
     settings_widget.h \
     unixtimer.h \
+    uploads_widget.h \
     xmlinterpreter.h
 
 FORMS += \
     ciderpress.ui \
     downloads_widget.ui \
-    settings_widget.ui
+    settings_widget.ui \
+    uploads_widget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
