@@ -85,7 +85,18 @@ bool Settings_Manager::writeSettingsFile()
         file.close();
         success = true;
     }
+
+    //XMLInterpreter *xi = new XMLInterpreter;
+    //xi->readXML("settings.xml");
+    //qDebug() << "PASSWD: " << xi->readElement("ajcore", "password");
+
     return success;
+}
+
+void Settings_Manager::readSettingsFile()
+{
+    XMLInterpreter *xmlinterpreter = new XMLInterpreter;
+
 }
 
 
@@ -106,3 +117,4 @@ void Settings_Manager::directorySettings(QString complete, QString incomplete)
     settings.setAttribute("incomplete", incomplete);
     root.appendChild(settings);
 }
+

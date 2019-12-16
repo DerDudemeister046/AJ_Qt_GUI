@@ -7,6 +7,8 @@
 #include <QtXml>        // save and load settings in XML format
 #include <QtDebug>
 
+#include "xmlinterpreter.h"
+
 class Settings_Manager : public QObject
 {
     Q_OBJECT
@@ -15,6 +17,7 @@ public:
     bool checkSettingsFile();   // checks if a settingsfile has been created.
     bool createSettingsFile();  // creates an empty settingsfile
     bool writeSettingsFile();   // writes settings to disk
+    void readSettingsFile();
     void ajcoreSettings(QString host, QString port, QString password);
     void directorySettings(QString complete, QString incomplete);
 private:

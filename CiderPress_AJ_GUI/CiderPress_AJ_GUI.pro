@@ -23,7 +23,8 @@ SOURCES += \
     md5generator.cpp \
     settings_manager.cpp \
     settings_widget.cpp \
-    unixtimer.cpp
+    unixtimer.cpp \
+    xmlinterpreter.cpp
 
 HEADERS += \
     ciderpress.h \
@@ -32,7 +33,8 @@ HEADERS += \
     md5generator.h \
     settings_manager.h \
     settings_widget.h \
-    unixtimer.h
+    unixtimer.h \
+    xmlinterpreter.h
 
 FORMS += \
     ciderpress.ui \
