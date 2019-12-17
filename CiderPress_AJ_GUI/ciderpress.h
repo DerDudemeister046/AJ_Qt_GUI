@@ -5,6 +5,7 @@
 #include <QMdiSubWindow>
 
 #include "xml_manager.h"
+#include "settings_widget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class CiderPress; }
@@ -19,6 +20,8 @@ public:
     ~CiderPress();
 
 private slots:
+    void on_settings_btn_clicked();
+
 private:
     Ui::CiderPress *ui;
     XML_Manager *xmlManager;

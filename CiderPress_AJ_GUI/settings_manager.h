@@ -8,6 +8,8 @@
 #include <QtDebug>
 
 #include "xmlinterpreter.h"
+#include "xml_manager.h"
+
 
 class Settings_Manager : public QObject
 {
@@ -21,6 +23,7 @@ public:
     void ajcoreSettings(QString host, QString port, QString password);
     void directorySettings(QString complete, QString incomplete);
 private:
+    XML_Manager *xmlManager;
     QDomDocument document;
     QDomElement root;
     QString filename = "settings.xml";

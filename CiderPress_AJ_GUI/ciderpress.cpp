@@ -29,3 +29,10 @@ void CiderPress::on_pushButton_2_clicked()
     dw->show();
 }
 */
+
+void CiderPress::on_settings_btn_clicked()
+{
+    Settings_Widget *sw = new Settings_Widget;
+    ui->mdiArea->addSubWindow(sw);
+    sw->show();
+}
