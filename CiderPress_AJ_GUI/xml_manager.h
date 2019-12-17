@@ -27,9 +27,14 @@ public:
     bool fileExist();                   // Check if file exists, if so return true
 
     // SET- & GET-Methods
+    void setRootElement(QDomElement root);  // set Rootelement of XML-Document
+    QDomElement getRootElement();           // Returns Rootelement of XML-Document
+    void setDocument(QDomDocument document);
+    QDomDocument getDocument();
     void setReadFile(QString readfile);     // set filename of file to be read
     QString getReadFile();                  // get filename of file to be read
-
+    void setWriteFile(QString writefile);
+    QString getWriteFile();
 private:
     // Tables to get information from AJCore
     const QStringList tables = {"directory.xml","downloadpartlist.xml","getobject.xml",

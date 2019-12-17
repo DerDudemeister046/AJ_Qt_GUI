@@ -2,18 +2,22 @@
 
 Settings_Manager::Settings_Manager(QObject *parent) : QObject(parent)
 {
+    // Prepare Settingsfile
+    xmlManager->setWriteFile("settings.xml");
+    xmlManager->setReadFile("settings.xml");
     // Create Document Root
-    root = document.createElement("settings");
+    //root = document.createElement("settings");
+    xmlManager->setRootElement(xmlManager->getDocument().createElement("settings"));
     // Add Root to Document
-    document.appendChild(root);
-
+    //document.appendChild(root);
+    xmlManager->getDocument().appendChild(xmlManager->getRootElement());
     // Check if settingsfile exists. If not create one.
-
-    if (!checkSettingsFile())
+    //if (!checkSettingsFile())
+    if (xmlManager->fileExist())
     {
         qDebug() << "No settingsfile found.";
         qDebug() << "Creating...";
-
+/*
         if (!createSettingsFile())
         {
             qDebug() << "Configfile cant be created";
@@ -22,6 +26,7 @@ Settings_Manager::Settings_Manager(QObject *parent) : QObject(parent)
         {
             qDebug() << "Configfile successfully created";
         }
+*/
     }
     else
     {

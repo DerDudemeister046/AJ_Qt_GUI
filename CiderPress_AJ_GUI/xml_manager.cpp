@@ -30,10 +30,15 @@ bool XML_Manager::initialize()
         port = getElement("ajcore", "port");
         password = getElement("ajcore", "password");
         // Get a session id from AJCore
-        writefile = "session.xml";
+        //writefile = "session.xml";
+        setWriteFile("session.xml");
+        QString test = QString("http://") + host + QString(":") + port + "/xml/" + tables.at(3) + QString("?password=") + password;
+        qDebug() << "TEST: " << test;
         get(QString("http://") + host + QString(":") + port + "/xml/" + tables.at(3) + QString("?password=") + password);
-        readfile = "session.xml";
+        //readfile = "session.xml";
+        setReadFile("session.xml");
         loadXML();
+        qDebug() << "GET: " << getElement("session", "id");
         sessionID = getElement("session", "id");
         qDebug() << "SESSION ID: " << sessionID;
         success = true;
@@ -196,6 +201,26 @@ bool XML_Manager::fileExist()
 
 // SET- & GET-Methods
 
+void XML_Manager::setRootElement(QDomElement root)
+{
+    this->root = root;
+}
+
+QDomElement XML_Manager::getRootElement()
+{
+    return root;
+}
+
+void XML_Manager::setDocument(QDomDocument document)
+{
+    this->document = document;
+}
+
+QDomDocument XML_Manager::getDocument()
+{
+    return document;
+}
+
 void XML_Manager::setReadFile(QString readfile)
 {
     this->readfile = readfile;
@@ -204,6 +229,16 @@ void XML_Manager::setReadFile(QString readfile)
 QString XML_Manager::getReadFile()
 {
     return readfile;
+}
+
+void XML_Manager::setWriteFile(QString writefile)
+{
+    this->writefile = writefile;
+}
+
+QString XML_Manager::getWriteFile()
+{
+    return writefile;
 }
 
 // Slots
