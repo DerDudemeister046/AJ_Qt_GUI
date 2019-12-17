@@ -11,15 +11,21 @@
 //#include "uploads_widget.h"
 //#include "servers_widget.h"
 
+#include "xml_manager.h"
+
 
 #include <QDebug>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    CiderPress w;
-    w.show();
+    //CiderPress w;
+    //w.show();
 
+
+    XML_Manager *xml = new XML_Manager;
+    xml->setReadFile("settings.xml");
+    xml->loadXML();
 
     //Downloads_Widget *dw = new Downloads_Widget;
     //dw->show();
