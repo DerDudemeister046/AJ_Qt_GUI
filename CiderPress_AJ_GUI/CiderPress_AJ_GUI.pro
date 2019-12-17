@@ -26,6 +26,7 @@ SOURCES += \
     settings_widget.cpp \
     unixtimer.cpp \
     uploads_widget.cpp \
+    xml_manager.cpp \
     xmlinterpreter.cpp
 
 HEADERS += \
@@ -38,6 +39,7 @@ HEADERS += \
     settings_widget.h \
     unixtimer.h \
     uploads_widget.h \
+    xml_manager.h \
     xmlinterpreter.h
 
 FORMS += \
