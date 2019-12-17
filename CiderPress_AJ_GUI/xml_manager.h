@@ -6,7 +6,6 @@
 #include <QNetworkAccessManager> // Make requests to core
 #include <QNetworkReply> // handle core replies
 #include <QDebug>
-
 #include "unixtimer.h"
 
 class XML_Manager : public QObject
@@ -14,11 +13,15 @@ class XML_Manager : public QObject
     Q_OBJECT
 public:
     explicit XML_Manager(QObject *parent = nullptr);
+    bool initialize();  // Initialize object, load settings from file
+
     void get(QString url);              // Get XML table from AJCore
     QStringList urlCreator();  // Generates URL to AJCore
     void loadXML();                     // Reads whole XML-File
+    void writeXML();                    // Writes XML-File to disk
 
     QStringList getValueList(QString tag, QString value);
+    QString getElement(QString tag, QString value);
 
     // Checker functions
     bool fileExist();                   // Check if file exists, if so return true
@@ -46,7 +49,7 @@ private:
     QByteArray xmlreply;    // Reply of XML Query
     QDomDocument document;  // XML Document, this is where the root comes from
 
-    QStringList valuelist;
+    QStringList valuelist;  // List of all values in XML Table
     QStringList urlList;    // List of all generated lists, ready to be used if needed.
 
 

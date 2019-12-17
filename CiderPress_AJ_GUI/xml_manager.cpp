@@ -2,12 +2,41 @@
 
 XML_Manager::XML_Manager(QObject *parent) : QObject(parent)
 {
+    if (!initialize())
+    {
+        qDebug() << "Initialization failed";
+    }
+    else
+    {
+        // Test -> Echo tables
+        //qDebug() << "TABLES: " << tables;
+        //qDebug() << "FUNCTIONS: " << functions;
+        qDebug() << "Initialization succeded";
+    }
+}
 
+// Initialization
 
+bool XML_Manager::initialize()
+{
+    bool success = false;
 
-    // Test -> Echo tables
-    qDebug() << "TABLES: " << tables;
-    qDebug() << "FUNCTIONS: " << functions;
+    setReadFile("settings.xml");
+    if (!fileExist())
+    {
+        qDebug() << "File not found";
+    }
+    else
+    {
+        qDebug() << "Config loaded...";
+        loadXML();
+        host = getElement("ajcore", "host");
+        port = getElement("ajcore", "port");
+        password = getElement("ajcore", "password");
+        success = true;
+    }
+
+    return success;
 }
 
 // Functions
@@ -23,26 +52,17 @@ void XML_Manager::get(QString url)
 
 QStringList XML_Manager::urlCreator()
 {
-    //xmlInterpreter = new XMLInterpreter(this);
-    //xmlInterpreter->readXML("settings.xml");
-    //QString h = xmlInterpreter->readElement("ajcore", "host");
-    //QString p = xmlInterpreter->readElement("ajcore", "port");
-    //QString pwdHash = xmlInterpreter->readElement("ajcore", "password");
-    //UnixTimer *unixtime = new UnixTimer;
-    //QString time = QVariant(unixtime->getUnixTime()).toString();
-    //QString url = "http://" + h + ":" + p + "/xml/" + table + "?password=" + pwdHash + "&timestamp=" + time;
-
     QStringList urls;
+
+    UnixTimer *ut = new UnixTimer;
+    time = QVariant(ut->getUnixTime()).toString();
 
     for (int i=0; i<tables.size(); i++)
     {
         QString url = "http://" + host + ":" + port + "/xml/" + tables.at(i) + "?password=" + password + "&timestamp=" + time;
+        qDebug() << url;
         urls << url;
     }
-
-
-
-    qDebug() << "TEST_URLS: " << urls;
     return urls;
 }
 
@@ -73,9 +93,71 @@ void XML_Manager::loadXML()
     }
     else
     {
-        qDebug() << "Setup XML-File failed!";
+        qDebug() << "Setup XML-File failed! Empty Document";
     }
 }
+
+void XML_Manager::writeXML()
+{
+    if (writefile.isEmpty() || writefile.isNull())
+    {
+        qDebug() << "No File to write specified. Aborting...";
+    }
+    else
+    {
+        qDebug() << "Write...";
+        file.setFileName(writefile); // change to different dir/name
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        {
+            qDebug() << "Failed to open file";
+        }
+        else
+        {
+            QTextStream stream(&file);
+            stream << document.toString();
+            file.close();
+            qDebug() << "Finished!";
+        }
+    }
+}
+
+// Returns list of values
+QStringList XML_Manager::getValueList(QString tag, QString value)
+{
+    QStringList list;
+    QDomNodeList items = root.elementsByTagName(tag);
+
+    for (int i = 0; i < items.count(); i++)
+    {
+        QDomNode itemnode = items.at(i);
+        // convert to element
+        if(itemnode.isElement())
+        {
+            QDomElement item = itemnode.toElement();
+            list << item.attribute(value);
+        }
+    }
+    return list;
+}
+
+// Returns specific element
+QString XML_Manager::getElement(QString tag, QString value)
+{
+    QDomNodeList items = root.elementsByTagName(tag);
+    QString element = "";
+    for (int i = 0; i < items.count(); i++)
+    {
+        QDomNode itemnode = items.at(i);
+        // convert to element
+        if(itemnode.isElement())
+        {
+            QDomElement item = itemnode.toElement();
+            element = item.attribute(value);
+        }
+    }
+    return element;
+}
+
 
 // Checker functions
 
@@ -91,10 +173,12 @@ bool XML_Manager::fileExist()
     {
         qDebug() << "File is empty";
     }
+    /*
     else if (document.isNull())
     {
         qDebug() << "Document is empty";
     }
+    */
     else
     {
         qDebug() << "File found. Begin processing...";
