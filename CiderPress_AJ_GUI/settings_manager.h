@@ -23,7 +23,7 @@ public:
     void ajcoreSettings(QString host, QString port, QString password);
     void directorySettings(QString complete, QString incomplete);
 private:
-    XML_Manager *xmlManager;
+    XML_Manager *xmlManager = new XML_Manager;
     QDomDocument document;
     QDomElement root;
     QString filename = "settings.xml";

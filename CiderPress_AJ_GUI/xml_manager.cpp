@@ -43,9 +43,6 @@ bool XML_Manager::initialize()
         qDebug() << "SESSION ID: " << sessionID;
         success = true;
     }
-    // Reset file variables
-    readfile = "";
-    writefile = "";
 
     return success;
 }
@@ -87,7 +84,7 @@ void XML_Manager::loadXML()
     else
     {
         qDebug() << "XML-File opened successfully!";
-        if(!document.setContent(&file))
+        if(!document->setContent(&file))
         {
             qDebug() << "Failed to load Document";
         }
@@ -95,9 +92,9 @@ void XML_Manager::loadXML()
         file.close();
     }
     // get root element
-    if (!document.isNull())
+    if (!document->isNull())
     {
-        root = document.firstChildElement();
+        root = document->firstChildElement();
         qDebug() << "Rootelement set";
         qDebug() << "Reading XML-File finished!";
     }
@@ -109,6 +106,7 @@ void XML_Manager::loadXML()
 
 void XML_Manager::writeXML()
 {
+    /*
     if (writefile.isEmpty() || writefile.isNull())
     {
         qDebug() << "No File to write specified. Aborting...";
@@ -128,6 +126,23 @@ void XML_Manager::writeXML()
             file.close();
             qDebug() << "Finished!";
         }
+    }
+    */
+
+    qDebug() << "Write...";
+    file.setFileName(getWriteFile()); // change to different dir/name
+    qDebug() << "FILENAME: " << file.fileName();
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        qDebug() << "Failed to open file";
+    }
+    else
+    {
+        QTextStream stream(&file);
+        stream << document->toString();
+        qDebug() << "STREAM: " << document->toString();
+        file.close();
+        qDebug() << "Finished!";
     }
 }
 
@@ -213,12 +228,12 @@ QDomElement XML_Manager::getRootElement()
 
 void XML_Manager::setDocument(QDomDocument document)
 {
-    this->document = document;
+    this->document = &document;
 }
 
 QDomDocument XML_Manager::getDocument()
 {
-    return document;
+    return *document;
 }
 
 void XML_Manager::setReadFile(QString readfile)
@@ -245,7 +260,7 @@ QString XML_Manager::getWriteFile()
 
 void XML_Manager::replyFinished(QNetworkReply *reply)
 {
-    if (document.setContent(reply->readAll()))
+    if (document->setContent(reply->readAll()))
     {
         qDebug() << "Success";
         writeXML();

@@ -77,7 +77,8 @@ bool Settings_Manager::writeSettingsFile()
     bool success = false;
 
     // Write file to disk
-    QFile file(filename);
+    QFile file(xmlManager->getWriteFile());
+    qDebug() << "WRITE SETTINGS FILE: " << file.fileName();
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
         qDebug() << "File cant be opened!";
@@ -86,15 +87,24 @@ bool Settings_Manager::writeSettingsFile()
     else
     {
         QTextStream stream(&file);
-        stream << document.toString();
+        qDebug() << "XX WRITEFILE TEST: " << xmlManager->getDocument().toString();
+        stream << xmlManager->getDocument().toString();
+
         file.close();
         success = true;
     }
-
     //XMLInterpreter *xi = new XMLInterpreter;
     //xi->readXML("settings.xml");
     //qDebug() << "PASSWD: " << xi->readElement("ajcore", "password");
 
+
+    xmlManager->setReadFile("settings.xml");
+    qDebug() << "SET READ: " << xmlManager->getReadFile();
+    xmlManager->setWriteFile("settings.xml");
+    qDebug() << "SET WRITE: " << xmlManager->getWriteFile();
+
+    qDebug() << "DOCUMENT: " << xmlManager->getDocument().toString();
+    xmlManager->writeXML();
     return success;
 }
 
@@ -110,18 +120,18 @@ QString Settings_Manager::readSettingsFile(QString section, QString value)
 // Creates and writes Section acjore in settingsfile
 void Settings_Manager::ajcoreSettings(QString host, QString port, QString password)
 {
-    QDomElement settings = document.createElement("ajcore");
+    QDomElement settings = xmlManager->getDocument().createElement("ajcore");
     settings.setAttribute("host", host);
     settings.setAttribute("port", port);
     settings.setAttribute("password", password);
-    root.appendChild(settings);
+    xmlManager->getRootElement().appendChild(settings);
 }
 
 void Settings_Manager::directorySettings(QString complete, QString incomplete)
 {
-    QDomElement settings = document.createElement("directories");
+    QDomElement settings = xmlManager->getDocument().createElement("directories");
     settings.setAttribute("complete", complete);
     settings.setAttribute("incomplete", incomplete);
-    root.appendChild(settings);
+    xmlManager->getRootElement().appendChild(settings);
 }
 

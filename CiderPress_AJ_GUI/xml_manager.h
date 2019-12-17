@@ -55,7 +55,7 @@ private:
 
     QDomElement root;       // Rootelement of XML Table
     QByteArray xmlreply;    // Reply of XML Query
-    QDomDocument document;  // XML Document, this is where the root comes from
+    QDomDocument *document = new QDomDocument();  // XML Document, this is where the root comes from
 
     QStringList valuelist;  // List of all values in XML Table
     QStringList urlList;    // List of all generated lists, ready to be used if needed.
