@@ -51,9 +51,44 @@ void XML_Manager::loadXML()
         file.close();
     }
     // get root element
-    root = document.firstChildElement();
-    qDebug() << "Rootelement set";
-    qDebug() << "Reading XML-File finished!";
+    if (!document.isNull())
+    {
+        root = document.firstChildElement();
+        qDebug() << "Rootelement set";
+        qDebug() << "Reading XML-File finished!";
+    }
+    else
+    {
+        qDebug() << "Setup XML-File failed!";
+    }
+}
+
+// Checker functions
+
+bool XML_Manager::fileExist()
+{
+    bool check = false;
+
+    if (getReadFile().isNull())
+    {
+        qDebug() << "Readfile value is empty";
+    }
+    else if (getReadFile().isEmpty())
+    {
+        qDebug() << "File is empty";
+    }
+    else if (document.isNull())
+    {
+        qDebug() << "Document is empty";
+    }
+    else
+    {
+        qDebug() << "File found. Begin processing...";
+        check = true;
+    }
+
+    qDebug() << "FOUND: " << check;
+    return check;
 }
 
 // SET- & GET-Methods
@@ -72,8 +107,6 @@ QString XML_Manager::getReadFile()
 
 void XML_Manager::replyFinished(QNetworkReply *reply)
 {
-    //setXMLReply(reply->readAll());
-    //if (document.setContent(getXMLReply()))
     if (document.setContent(reply->readAll()))
     {
         qDebug() << "Success";

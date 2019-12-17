@@ -24,7 +24,8 @@ int main(int argc, char *argv[])
 
 
     XML_Manager *xml = new XML_Manager;
-    xml->setReadFile("settings.xml");
+    xml->setReadFile("settings45.xml");
+    xml->fileExist();
     xml->loadXML();
 
     //Downloads_Widget *dw = new Downloads_Widget;
