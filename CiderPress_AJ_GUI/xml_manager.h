@@ -43,7 +43,10 @@ private:
     QString host;       // Host where AJCore is running
     QString port;       // Port to AJCore XML
     QString password;   // MD5 Password Hash
+    // Other values
     QString time = "0";       // Unix Timestamp
+    QString sessionID;
+
 
     QDomElement root;       // Rootelement of XML Table
     QByteArray xmlreply;    // Reply of XML Query

@@ -29,12 +29,24 @@ bool XML_Manager::initialize()
     else
     {
         qDebug() << "Config loaded...";
+        // Get values from config file
         loadXML();
         host = getElement("ajcore", "host");
         port = getElement("ajcore", "port");
         password = getElement("ajcore", "password");
+        // Get a session id from AJCore
+        writefile = "session.xml";
+        get(QString("http://") + host + QString(":") + port + "/xml/" + tables.at(3) + QString("?password=") + password);
+        readfile = "session.xml";
+        loadXML();
+        sessionID = getElement("session", "id");
+        qDebug() << "SESSION ID: " << sessionID;
         success = true;
     }
+
+    // Reset file variables
+    readfile = "";
+    writefile = "";
 
     return success;
 }
@@ -208,6 +220,7 @@ void XML_Manager::replyFinished(QNetworkReply *reply)
     if (document.setContent(reply->readAll()))
     {
         qDebug() << "Success";
+        writeXML();
     }
     else
     {
