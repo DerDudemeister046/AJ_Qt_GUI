@@ -8,19 +8,14 @@ XML_Manager::XML_Manager(QObject *parent) : QObject(parent)
     }
     else
     {
-        // Test -> Echo tables
-        //qDebug() << "TABLES: " << tables;
-        //qDebug() << "FUNCTIONS: " << functions;
         qDebug() << "Initialization succeded";
     }
 }
 
 // Initialization
-
 bool XML_Manager::initialize()
 {
     bool success = false;
-
     setReadFile("settings.xml");
     if (!fileExist())
     {
@@ -43,7 +38,6 @@ bool XML_Manager::initialize()
         qDebug() << "SESSION ID: " << sessionID;
         success = true;
     }
-
     // Reset file variables
     readfile = "";
     writefile = "";
@@ -52,7 +46,6 @@ bool XML_Manager::initialize()
 }
 
 // Functions
-
 void XML_Manager::get(QString url)
 {
     QNetworkAccessManager *man = new QNetworkAccessManager(this);
