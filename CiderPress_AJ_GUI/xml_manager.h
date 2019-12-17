@@ -15,7 +15,7 @@ class XML_Manager : public QObject
 public:
     explicit XML_Manager(QObject *parent = nullptr);
     void get(QString url);              // Get XML table from AJCore
-    QString urlCreator(QString table);  // Generates URL to AJCore
+    QStringList urlCreator();  // Generates URL to AJCore
     void loadXML();                     // Reads whole XML-File
 
     QStringList getValueList(QString tag, QString value);
@@ -29,18 +29,26 @@ public:
 
 private:
     // Tables to get information from AJCore
-    const QStringList tables = {"directory.xml","downloadpartlist.xml","getobject.xml","getsession.xml","information.xml","modified.xml","settings.xml","share.xml","userpartlist.xml"};
-    const QStringList functions = {"canceldownload","cleandownloadlist","pausedownload","processlink","removeserver","resumedownload","search","serverlogin","setpassword","setpowerdownload","setpriority","setsettings"};
+    const QStringList tables = {"directory.xml","downloadpartlist.xml","getobject.xml",
+                                "getsession.xml","information.xml","modified.xml",
+                                "settings.xml","share.xml","userpartlist.xml"}; // all tables offered by AJCore
+    const QStringList functions = {"canceldownload","cleandownloadlist","pausedownload",
+                                   "processlink","removeserver","resumedownload","search",
+                                   "serverlogin","setpassword","setpowerdownload",
+                                   "setpriority","setsettings"}; // all functions offered by AJCore
     // Values from settings.xml
-    QString host;
-    QString port;
-    QString password;
+    QString host;       // Host where AJCore is running
+    QString port;       // Port to AJCore XML
+    QString password;   // MD5 Password Hash
+    QString time = "0";       // Unix Timestamp
 
     QDomElement root;       // Rootelement of XML Table
     QByteArray xmlreply;    // Reply of XML Query
     QDomDocument document;  // XML Document, this is where the root comes from
 
     QStringList valuelist;
+    QStringList urlList;    // List of all generated lists, ready to be used if needed.
+
 
     QFile file;         // XML File handle
     QString writefile;  // file to be written to

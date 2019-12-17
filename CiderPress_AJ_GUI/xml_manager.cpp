@@ -3,6 +3,11 @@
 XML_Manager::XML_Manager(QObject *parent) : QObject(parent)
 {
 
+
+
+    // Test -> Echo tables
+    qDebug() << "TABLES: " << tables;
+    qDebug() << "FUNCTIONS: " << functions;
 }
 
 // Functions
@@ -16,20 +21,29 @@ void XML_Manager::get(QString url)
     man->get(request);
 }
 
-QString XML_Manager::urlCreator(QString table)
+QStringList XML_Manager::urlCreator()
 {
     //xmlInterpreter = new XMLInterpreter(this);
     //xmlInterpreter->readXML("settings.xml");
-
     //QString h = xmlInterpreter->readElement("ajcore", "host");
     //QString p = xmlInterpreter->readElement("ajcore", "port");
     //QString pwdHash = xmlInterpreter->readElement("ajcore", "password");
     //UnixTimer *unixtime = new UnixTimer;
     //QString time = QVariant(unixtime->getUnixTime()).toString();
     //QString url = "http://" + h + ":" + p + "/xml/" + table + "?password=" + pwdHash + "&timestamp=" + time;
-    QString url = table; // = h + p + pwdHash;
-    qDebug() << "TEST: " << url;
-    return url;
+
+    QStringList urls;
+
+    for (int i=0; i<tables.size(); i++)
+    {
+        QString url = "http://" + host + ":" + port + "/xml/" + tables.at(i) + "?password=" + password + "&timestamp=" + time;
+        urls << url;
+    }
+
+
+
+    qDebug() << "TEST_URLS: " << urls;
+    return urls;
 }
 
 /*loadXML reads an XML File from HDD and sets it as content of document*/

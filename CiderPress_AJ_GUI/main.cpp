@@ -24,10 +24,10 @@ int main(int argc, char *argv[])
 
 
     XML_Manager *xml = new XML_Manager;
-    xml->setReadFile("settings45.xml");
+    xml->setReadFile("settings.xml");
     xml->fileExist();
     xml->loadXML();
-
+    xml->urlCreator();
     //Downloads_Widget *dw = new Downloads_Widget;
     //dw->show();
     //Uploads_Widget *uw = new Uploads_Widget;
