@@ -2,6 +2,7 @@
 
 XML_Manager::XML_Manager(QObject *parent) : QObject(parent)
 {
+    /*
     if (!initialize())
     {
         qDebug() << "Initialization failed";
@@ -10,40 +11,51 @@ XML_Manager::XML_Manager(QObject *parent) : QObject(parent)
     {
         qDebug() << "Initialization succeded";
     }
+    */
 }
 
 // Initialization
 bool XML_Manager::initialize()
 {
     bool success = false;
+    qDebug() << "Starting initialization";
     setReadFile("settings.xml");
+    qDebug() << "Set READFILE: " << getReadFile();
+    qDebug() << "Check if FILE: " << getReadFile() << " exists";
     if (!fileExist())
     {
-        qDebug() << "File not found";
+        qDebug() << "FILE" << getReadFile() << " not found";
+        qDebug() << "Initialization failed";
     }
     else
     {
         qDebug() << "Config loaded...";
         // Get values from config file
         loadXML();
+
         host = getElement("ajcore", "host");
+        qDebug() << "Set Host: " << host;
         port = getElement("ajcore", "port");
+        qDebug() << "Set Port: " << port;
         password = getElement("ajcore", "password");
+        qDebug() << "Set Passwort: " << password;
         // Get a session id from AJCore
         //writefile = "session.xml";
         setWriteFile("session.xml");
+        qDebug() << "Writefile set: " << getWriteFile();
         QString test = QString("http://") + host + QString(":") + port + "/xml/" + tables.at(3) + QString("?password=") + password;
-        qDebug() << "TEST: " << test;
+        qDebug() << "GENERATED URL: " << test;
         get(QString("http://") + host + QString(":") + port + "/xml/" + tables.at(3) + QString("?password=") + password);
         //readfile = "session.xml";
         setReadFile("session.xml");
+        qDebug() << "Set READFILE: " << getReadFile();
         loadXML();
         qDebug() << "GET: " << getElement("session", "id");
         sessionID = getElement("session", "id");
         qDebug() << "SESSION ID: " << sessionID;
         success = true;
+        qDebug() << "Initialization succeded";
     }
-
     return success;
 }
 
@@ -185,7 +197,6 @@ QString XML_Manager::getElement(QString tag, QString value)
 
 
 // Checker functions
-
 bool XML_Manager::fileExist()
 {
     bool check = false;
